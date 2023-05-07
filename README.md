@@ -1,21 +1,133 @@
-# GitHub-Actions-Zero-to-Hero
-Repository to kick start your journey with GitHub Actions
+📍 Introduction:
+GitHub Actions is a powerful and flexible platform for automating software development workflows. With GitHub Actions, developers can easily build, test, and deploy their code directly from their GitHub repositories. GitHub provides two types of runners: GitHub-hosted runners and self-hosted runners. In this blog post, we will focus on the benefits of using self-hosted runners for Python applications and how to set them up using an EC2 instance.
 
-## Comparing with Jenkins 
+📍 GitHub Hosted Runner vs Self-Hosted Runner
+GitHub-hosted runners are provided by GitHub and run in a virtual machine hosted on GitHub infrastructure. They are free to use and support various operating systems, including Linux, Windows, and macOS. However, they have certain limitations, such as not allowing custom software installations, not having access to on-premises resources, and being subject to timeouts and usage limits.
 
-### Advantages of GitHub Actions over Jenkins
+On the other hand, self-hosted runners are runners that you set up and manage in your own infrastructure. With self-hosted runners, you have full control over the environment and resources, and you can customize the runner to meet your specific requirements. This makes self-hosted runners ideal for private projects, enterprise organizations, and projects that require specific dependencies or software versions.
 
-- Hosting: Jenkins is self-hosted, meaning it requires its own server to run, while GitHub Actions is hosted by GitHub and runs directly in your GitHub repository.
+📍 Benefits of Self-Hosted Runner for Python Applications
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397885016/80466a49-e2cc-4abc-9705-bc555e7ffaee.png align="center")
 
-- User interface: Jenkins has a complex and sophisticated user interface, while GitHub Actions has a more streamlined and user-friendly interface that is better suited for simple to moderate automation tasks.
+Here are some benefits of using self-hosted runners for Python applications:
 
-- Cost: Jenkins can be expensive to run and maintain, especially for organizations with large and complex automation needs. GitHub Actions, on the other hand, is free for open-source projects and has a tiered pricing model for private repositories, making it more accessible to smaller organizations and individual developers.
+Customization: You can customize the runner environment to match your application's requirements. For example, you can install specific Python versions, libraries, and tools.
 
-### Advantages of Jenkins over GitHub Actions
+Scalability: You can scale the runner resources, such as CPU, memory, and storage, to handle large and complex Python applications.
 
-- Integration: Jenkins can integrate with a wide range of tools and services, but GitHub Actions is tightly integrated with the GitHub platform, making it easier to automate tasks related to your GitHub workflow.
+Security: You have full control over the runner's security, such as network access, firewall rules, and encryption.
 
-In conclusion, Jenkins is better suited for complex and large-scale automation tasks, while GitHub Actions is a more cost-effective and user-friendly solution for simple to moderate automation needs.
+On-premises resources: You can access and use on-premises resources, such as databases, storage, and services, from your runner.
 
+Cost-effective: You can save on costs by using your existing infrastructure and resources for the runner.
 
-# gitHub-actions-setup-for-python-app
+🔹GitHub Repository to follow along:
+https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app.git
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397548447/2c838a88-ee9f-43fa-90d9-ed99f32a7a6c.png align="center")
+
+🔹 Setting up a Self-Hosted Runner using EC2 Instance
+To set up a self-hosted runner using an EC2 instance, follow these steps:
+
+Create an Ubuntu instance with t2.micro size on AWS.
+
+Configure inbound and outbound rules to allow SSH, HTTP, and HTTPS traffic.
+
+Connect to the EC2 instance using SSH and run the following command to download and run the self-hosted runner:
+
+mkdir actions-runner && cd actions-runner
+curl -O -L https://github.com/actions/runner/releases/download/v2.283.2/actions-runner-linux-x64-2.283.2.tar.gz
+tar xzf ./actions-runner-linux-x64-2.283.2.tar.gz
+./config.sh --url https://github.com/<USERNAME>/<REPOSITORY> --token <TOKEN>
+./run.sh
+Replace <USERNAME> and <REPOSITORY> with your GitHub username and repository name, respectively. Replace <TOKEN> with a personal access token that has the repo scope.
+
+In your repository, go to Settings > Actions > Runners and click on the "Add new runner" button.
+
+Enter a name for the runner and select the operating system, architecture, and runtime environment that matches your EC2 instance.
+
+Copy the registration token and paste it into the EC2 instance terminal when prompted.
+
+Run the ./run.sh command again to start the runner service.
+
+Now, your self-hosted runner is connected to your repository and ready to run workflows.
+
+In short, we discussed the benefits of using self-hosted runners for Python applications and how to set them up using an EC2 instance. By using Configuring the self-hosted runner is relatively easy and can be done by following the below steps:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397837049/1317a32e-ccbc-4c2c-929f-318b29409dfa.png align="center")
+
+🔹 Detailed Configurations for Self-hosted Instance:
+Create an Ubuntu Instance with t2-micro or any other suitable instance as per the requirement.
+
+Configure inbound and outbound rules for ports 22, 80, and 443.
+
+Connect the instance with GitHub Actions using SSH.
+
+In the repository, go to Settings > Actions > Runner > Add a new self-hosted runner.
+
+Enter the required details like runner image, architecture, and other configuration details.
+
+Run all the commands provided in the download section on your EC2 instance, which will set up all the connections using the tokens and authentication.
+
+Once the self-hosted runner is set up, you can use it to run your workflows on your EC2 instance. In the workflow file, you can specify the runs-on parameter as the name of the self-hosted runner.
+
+For example, if you have named your runner "my-runner", you can specify it in your workflow file like this:
+
+🔹 Example of self-hosted runner:
+name: My First GitHub Actions
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    # runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+
+    - name: Run tests
+      run: |
+        cd src
+        python -m pytest addition.py
+This will ensure that your workflow runs on the self-hosted runner instead of the GitHub-hosted runner i.e. self-hosted-runner.yml.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397847146/01b4d94a-77c1-4c8e-8f9e-a534181f5a29.png align="center")
+
+📍 Interview Question related to GitHub Actions:
+🔹Why did you choose GitHub Actions over other CI/CD solutions like Jenkins, AWS CodePipeline, etc.?
+There are several reasons why I chose GitHub Actions over other CI/CD solutions. Firstly, our project is open source in nature and GitHub is a popular platform for open source collaboration. Secondly, our organization is already using various features of GitHub like project management, security, and source code management, making it easier to use GitHub Actions. Finally, GitHub Actions provides the ability to set up our own runners, as well as the convenience of using GitHub-hosted runners for easier setup.
+
+🔹 How do you manage your credentials in GitHub?
+I use the secrets and variables option in GitHub to manage my credentials. This ensures that sensitive information like API keys, passwords, and other secrets are not exposed to the public.
+
+🔹 How do you create CI files for GitHub Actions? Explain the steps in detail.
+⚜ To create CI files for GitHub Actions, I follow these steps:
+Create a new file named "main.yml" in the ".github/workflows" directory of your repository.
+
+Specify the name of the workflow and the events that trigger the workflow.
+
+Define the jobs and steps that should be run as part of the workflow.
+
+Commit the changes to the repository and observe the workflow run in the Actions tab of the repository.
+
+🔹 Compare GitHub Actions vs. Jenkins.
+GitHub Actions and Jenkins are both popular CI/CD tools that can be used for building, testing, and deploying software applications. However, GitHub Actions is a newer tool and provides tighter integration with GitHub, while Jenkins is a more mature tool with a larger ecosystem of plugins and integrations. GitHub Actions also provides a more intuitive and user-friendly interface, while Jenkins requires more configuration and setup. Additionally, GitHub Actions provides the ability to set up self-hosted runners for better customization and control, while Jenkins requires the setup of additional infrastructure.
+
+📍 Conclusion
+In conclusion, self-hosted runners provide a lot of flexibility and customization options for building and testing your applications. Using an EC2 instance to set up a self-hosted runner is a great way to get started with GitHub Actions. With this guide and the code snippets provided, you should be able to easily set up and use self-hosted runners for your Python applications.
+
+📍 Resources:
+%[https://youtu.be/Rb2pUKdmdYo]
