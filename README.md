@@ -41,7 +41,7 @@ Here are some benefits of using self-hosted runners for Python applications:
 https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app.git
 ```
 
-![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/00cd900f-3b60-46f9-9b48-0857a5560da3)
+![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/500a6b8e-2154-41c6-a4ae-2e93ad18705b)
 
 ## **🔹** Setting up a Self-Hosted Runner using EC2 Instance
 
