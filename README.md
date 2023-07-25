@@ -20,7 +20,7 @@ On the other hand, self-hosted runners are runners that you set up and manage in
 
 # **📍** Benefits of Self-Hosted Runner for Python Applications
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397885016/80466a49-e2cc-4abc-9705-bc555e7ffaee.png align="center")
+![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/34837a19-83a7-4bda-96c4-00ca34a26393)
 
 Here are some benefits of using self-hosted runners for Python applications:
 
@@ -41,7 +41,7 @@ Here are some benefits of using self-hosted runners for Python applications:
 https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app.git
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397548447/2c838a88-ee9f-43fa-90d9-ed99f32a7a6c.png align="center")
+![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/00cd900f-3b60-46f9-9b48-0857a5560da3)
 
 ## **🔹** Setting up a Self-Hosted Runner using EC2 Instance
 
@@ -77,7 +77,7 @@ Now, your self-hosted runner is connected to your repository and ready to run wo
 
 In short, we discussed the benefits of using self-hosted runners for Python applications and how to set them up using an EC2 instance. By using Configuring the self-hosted runner is relatively easy and can be done by following the below steps:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397837049/1317a32e-ccbc-4c2c-929f-318b29409dfa.png align="center")
+![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/51ba56b9-96b8-4f95-8839-90458555b9e1)
 
 ## **🔹** Detailed Configurations for Self-hosted Instance:
 
@@ -134,7 +134,7 @@ jobs:
 
 This will ensure that your workflow runs on the self-hosted runner instead of the GitHub-hosted runner i.e. self-hosted-runner.yml.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1683397847146/01b4d94a-77c1-4c8e-8f9e-a534181f5a29.png align="center")
+![image](https://github.com/sumanprasad007/gitHub-actions-setup-for-python-app/assets/55047333/811ee69a-de33-4ce7-b73a-20216f0a3ac4)
 
 # **📍** Interview Question related to GitHub Actions:
 
@@ -169,6 +169,4 @@ In conclusion, self-hosted runners provide a lot of flexibility and customizatio
 
 # **📍 Resources:**
 
-%[https://youtu.be/Rb2pUKdmdYo] 
-
-#
+https://youtu.be/Rb2pUKdmdYo
